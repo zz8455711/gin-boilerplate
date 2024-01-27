@@ -11,19 +11,25 @@ services:
     volumes:
       - prod_postgres_data:/var/lib/postgresql/data/
     restart: always
+    networks:
+      - work
 
   server:
     container_name: go_server
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - ${SERVER_PORT}:${SERVER_PORT}
     depends_on:
       - postgres_db
     links:
       - postgres_db:postgres_db
     restart: on-failure
+    networks:
+      - work
 
 volumes:
   prod_postgres_data:
+
+networks:
+  work:
+    external: true

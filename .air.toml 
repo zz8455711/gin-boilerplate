@@ -1,33 +1,33 @@
-# Config file for [Air](https://github.com/cosmtrek/air) in TOML format
+# Air（https://github.com/cosmtrek/air）的TOML格式配置文件
 
-# Working directory
-# . or absolute path, please note that the directories following must be under root
+# 工作目录
+# . 或绝对路径，请注意后面的目录必须在根目录下
 root = "."
 tmp_dir = "/tmp"
 
 [build]
-# Just plain old shell command. You could use `make` as well.
-cmd = "go build -o ./tmp/app/engine main.go"
-# Binary file yields from `cmd`.
+# 普通的Shell命令。也可以使用 `make`。
+cmd = "CGO_ENABLED 1 go build -o ./tmp/app/engine main.go"
+# 由 `cmd` 生成的二进制文件。
 bin = "/tmp/app"
 
-# Customize binary.
-# This is how you start to run your application. Since my application will works like CLI, so to run it, like to make a CLI call.
+# 自定义二进制文件。
+# 这是启动应用程序的方式。由于我的应用程序将像CLI一样工作，因此运行它就像进行CLI调用一样。
 full_bin = "./tmp/app/engine http"
-# This log file places in your tmp_dir.
+# 此日志文件位于您的tmp_dir中。
 log = "air_errors.log"
-# Watch these filename extensions.
-include_ext = ["go", "yaml",".env"]
-# Ignore these filename extensions or directories.
+# 监视这些文件扩展名。
+include_ext = ["go", "yaml", ".env"]
+# 忽略这些文件扩展名或目录。
 exclude_dir = ["tmp"]
-# It's not necessary to trigger build each time file changes if it's too frequent.
-delay = 500 # ms
+# 如果文件更改太频繁，则不必每次都触发构建。
+delay = 500 # 毫秒
 
 [log]
-# Show log time
+# 显示日志时间
 time = true
 [color]
 
 [misc]
-# Delete tmp directory on exit
+# 在退出时删除tmp目录
 clean_on_exit = true

@@ -6,14 +6,15 @@ import (
 	"gin-boilerplate/infra/logger"
 	"gin-boilerplate/migrations"
 	"gin-boilerplate/routers"
-	"github.com/spf13/viper"
 	"time"
+
+	"github.com/spf13/viper"
 )
 
 func main() {
 
 	//set timezone
-	viper.SetDefault("SERVER_TIMEZONE", "Asia/Dhaka")
+	viper.SetDefault("SERVER_TIMEZONE", "Asia/Shanghai")
 	loc, _ := time.LoadLocation(viper.GetString("SERVER_TIMEZONE"))
 	time.Local = loc
 
